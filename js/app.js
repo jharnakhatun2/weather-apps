@@ -8,12 +8,18 @@ const loadTemperatures = city => {
     .then(data => displayTemperature(data));
 }
 
-const displayTemperature = temp => {
-    const temperature = document.getElementById('wether-temp');
-    // console.log(temp.name);
-    temperature.innerText = temp.main.temp;
-    const cityName = document.getElementById('city-name');
-    cityName.innerText = temp.name;
+const displayTemperature = data => {
+    console.log(data.weather);
+    // const temperature = document.getElementById('wether-temp');
+    // temperature.innerText = data.main.temp;
+    setInnerTextById('wether-temp', data.main.temp);
+    // const cityName = document.getElementById('city-name');
+    // cityName.innerText = data.name;
+    setInnerTextById('city-name', data.name);
+    // const weatherStatus = document.getElementById('weather');
+    // weatherStatus.innerText = data.weather[0].main;
+    setInnerTextById('weather', data.weather[0].main);
+
 }
 
 //Eventhandler setting in search button
@@ -24,4 +30,12 @@ document.getElementById('city-name-trigger').addEventListener('click', function(
     searchInput.value = '';
     loadTemperatures(searchInputValue);
 });
-loadTemperatures();
+
+// Common Function for setting inner tex
+// text  = parameter.object;
+//example(text = temp.main.temp;)
+const setInnerTextById = (id,text) => {
+    const temperature = document.getElementById(id);
+    temperature.innerText = text;
+}
+loadTemperatures('dhaka');
