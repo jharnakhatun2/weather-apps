@@ -15,4 +15,13 @@ const displayTemperature = temp => {
     const cityName = document.getElementById('city-name');
     cityName.innerText = temp.name;
 }
-loadTemperatures('jessore');
+
+//Eventhandler setting in search button
+// search input field value will be city cityName
+document.getElementById('city-name-trigger').addEventListener('click', function(){
+    const searchInput = document.getElementById('search-city-name');
+    const searchInputValue = searchInput.value;
+    searchInput.value = '';
+    loadTemperatures(searchInputValue);
+});
+loadTemperatures();
